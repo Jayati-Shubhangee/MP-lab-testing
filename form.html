@@ -1,0 +1,336 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SkillMate Profile Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f7ff;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 650px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .header {
+        padding: 20px;
+        text-align: center;
+        background: #4f46e5;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .steps {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+    }
+    .step-box {
+        padding: 10px 15px;
+        background: #eef2ff;
+        border-radius: 5px;
+        display: inline-block;
+        font-weight: bold;
+    }
+    .form-body {
+        padding: 25px;
+    }
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+    .footer {
+        padding: 15px;
+        background: #fafafa;
+        display: flex;
+        justify-content: space-between;
+    }
+    button {
+        padding: 10px 18px;
+        border: none;
+        background: #4f46e5;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+    }
+    button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        SkillMate Profile
+    </div>
+
+    <div class="steps">
+        <span class="step-box" id="stepIndicator">Step 1 of 3</span>
+    </div>
+
+    <div class="form-body" id="formContent">
+         Step content will load here -->
+ <!--  </div>
+
+    <div class="footer">
+        <button id="backBtn" onclick="prevStep()" disabled>Back</button>
+        <button id="nextBtn" onclick="nextStep()">Next</button>
+    </div>
+
+</div>
+
+
+<script>
+    let step = 0;
+
+    const steps = [
+        `
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+
+        <label>Role</label>
+        <input type="text" id="role" placeholder="e.g. Frontend Developer">
+        `,
+
+        `
+        <label>Primary Skills</label>
+        <input type="text" id="skills" placeholder="e.g. React, Node.js">
+
+        <label>Experience (in years)</label>
+        <input type="number" id="exp" placeholder="e.g. 2">
+
+        <label>Bio</label>
+        <textarea id="bio" rows="4" placeholder="Write something about yourself"></textarea>
+        `,
+
+        `
+        <label>Project Interests</label>
+        <input type="text" id="interests" placeholder="e.g. AI, Web Dev, ML">
+
+        <label>GitHub Link</label>
+        <input type="text" id="github" placeholder="https://github.com/...">
+
+        <label>LinkedIn</label>
+        <input type="text" id="linkedin" placeholder="https://linkedin.com/...">
+        `
+    ];
+
+    function loadStep() {
+        document.getElementById("formContent").innerHTML = steps[step];
+        document.getElementById("stepIndicator").innerText = `Step ${step + 1} of 3`;
+
+        document.getElementById("backBtn").disabled = (step === 0);
+        
+        if (step === steps.length - 1) {
+            document.getElementById("nextBtn").innerText = "Submit";
+        } else {
+            document.getElementById("nextBtn").innerText = "Next";
+        }
+    }
+
+    function nextStep() {
+        if (step < steps.length - 1) {
+            step++;
+            loadStep();
+        } else {
+            submitForm();
+        }
+    }
+
+    function prevStep() {
+        if (step > 0) {
+            step--;
+            loadStep();
+        }
+    }
+
+    function submitForm() {
+        alert("Form submitted successfully!");
+        // You can replace this with backend API call
+    }
+
+    loadStep();
+</script>
+
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>SkillMate Profile Builder</title>
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+    /* Smooth fade animation between steps */
+    .fade {
+        animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Input focus glow */
+    input:focus, textarea:focus {
+        outline: none;
+        box-shadow: 0 0 8px rgba(99,102,241,0.5);
+        border-color: #6366f1;
+    }
+</style>
+
+</head>
+<body class="bg-gradient-to-br from-indigo-100 via-blue-50 to-purple-100 min-h-screen flex items-center justify-center p-6">
+
+<div class="w-full max-w-2xl bg-white/30 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/40">
+
+    <!-- Header -->
+    <div class="text-center p-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-t-3xl">
+        <h1 class="text-3xl font-bold tracking-wide">SkillMate Profile Builder</h1>
+        <p class="text-indigo-100 mt-2">Build your perfect skill profile for teammate matching</p>
+    </div>
+
+    <!-- Step Progress -->
+    <div class="flex items-center justify-center gap-4 py-6">
+        <div id="circle1" class="w-10 h-10 flex items-center justify-center text-white font-bold rounded-full bg-indigo-500 shadow-lg">1</div>
+        <div class="h-1 w-10 bg-gray-300 rounded"></div>
+        <div id="circle2" class="w-10 h-10 flex items-center justify-center text-white font-bold rounded-full bg-gray-300">2</div>
+        <div class="h-1 w-10 bg-gray-300 rounded"></div>
+        <div id="circle3" class="w-10 h-10 flex items-center justify-center text-white font-bold rounded-full bg-gray-300">3</div>
+    </div>
+
+    <!-- Dynamic Form -->
+    <div id="formContent" class="px-10 pb-6 fade"></div>
+
+    <!-- Footer buttons -->
+    <div class="flex items-center justify-between px-10 py-6">
+        <button id="backBtn" onclick="prevStep()" 
+            class="px-5 py-3 rounded-xl bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition disabled:opacity-40"
+            disabled>
+            ⬅ Back
+        </button>
+
+        <button id="nextBtn" onclick="nextStep()" 
+            class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition">
+            Next ➡
+        </button>
+    </div>
+
+</div>
+
+<script>
+let step = 0;
+
+const steps = [
+    `
+    <div class="fade">
+        <h2 class="text-xl font-bold text-gray-700 mb-4">Basic Information</h2>
+
+        <label class="font-semibold">Name</label>
+        <input type="text" id="name" class="w-full p-3 border rounded-xl mb-4" placeholder="Enter your name">
+
+        <label class="font-semibold">Email</label>
+        <input type="email" id="email" class="w-full p-3 border rounded-xl mb-4" placeholder="Enter your email">
+
+        <label class="font-semibold">Your Role</label>
+        <input type="text" id="role" class="w-full p-3 border rounded-xl" placeholder="e.g. Frontend Developer">
+    </div>
+    `,
+
+    `
+    <div class="fade">
+        <h2 class="text-xl font-bold text-gray-700 mb-4">Skills & Experience</h2>
+
+        <label class="font-semibold">Primary Skills</label>
+        <input type="text" id="skills" class="w-full p-3 border rounded-xl mb-4" placeholder="e.g. React, Node.js">
+
+        <label class="font-semibold">Experience (Years)</label>
+        <input type="number" id="exp" class="w-full p-3 border rounded-xl mb-4" placeholder="e.g. 2">
+
+        <label class="font-semibold">Short Bio</label>
+        <textarea id="bio" class="w-full p-3 border rounded-xl" rows="4"
+            placeholder="Share something about your background..."></textarea>
+    </div>
+    `,
+
+    `
+    <div class="fade">
+        <h2 class="text-xl font-bold text-gray-700 mb-4">Extra Details</h2>
+
+        <label class="font-semibold">Project Interests</label>
+        <input type="text" id="interests" class="w-full p-3 border rounded-xl mb-4" placeholder="e.g. ML, AI, Web Dev">
+
+        <label class="font-semibold">GitHub</label>
+        <input type="text" id="github" class="w-full p-3 border rounded-xl mb-4" placeholder="https://github.com/...">
+
+        <label class="font-semibold">LinkedIn</label>
+        <input type="text" id="linkedin" class="w-full p-3 border rounded-xl" placeholder="https://linkedin.com/...">
+    </div>
+    `
+];
+
+function loadStep() {
+    document.getElementById("formContent").innerHTML = steps[step];
+
+    // Step indicator highlight
+    document.getElementById("circle1").classList.toggle("bg-indigo-500", step >= 0);
+    document.getElementById("circle2").classList.toggle("bg-indigo-500", step >= 1);
+    document.getElementById("circle3").classList.toggle("bg-indigo-500", step >= 2);
+
+    document.getElementById("backBtn").disabled = (step === 0);
+
+    if (step === steps.length - 1) {
+        document.getElementById("nextBtn").innerText = "Submit ✔";
+    } else {
+        document.getElementById("nextBtn").innerText = "Next ➡";
+    }
+}
+
+function nextStep() {
+    if (step < steps.length - 1) {
+        step++;
+        loadStep();
+    } else {
+        submitForm();
+    }
+}
+
+function prevStep() {
+    if (step > 0) {
+        step--;
+        loadStep();
+    }
+}
+
+function submitForm() {
+    alert("Profile submitted successfully!");
+}
+
+loadStep();
+</script>
+
+</body>
+</html>
+
